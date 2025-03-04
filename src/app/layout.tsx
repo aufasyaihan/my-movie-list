@@ -26,12 +26,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-gray-950 dark:text-white`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-neutral-900 dark:text-white`}
             >
                 <header className="m-4 sticky top-5 z-10">
                     <Navbar />
                 </header>
-                <main>{children}</main>
+                <main className="px-4">{children}</main>
                 <footer></footer>
             </body>
         </html>
