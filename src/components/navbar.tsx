@@ -8,7 +8,6 @@ export default function Navbar() {
                 <Link href={"/"} className="text-lg font-bold select-none">
                     <span className="text-amber-600">My</span>MovieList
                 </Link>
-                <Link href={"/"}>Home</Link>
                 <Link href={"/movies"}>Movies</Link>
                 <Link href={"/tv"}>TV Shows</Link>
             </div>
