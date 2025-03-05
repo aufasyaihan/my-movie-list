@@ -1,6 +1,6 @@
 import Pagination from "@/components/pagination";
 import Movie from "./movie";
-import { getMovies } from "@/utils/movies";
+import { getMovies } from "@/lib/utils";
 
 interface MovieProps {
     title: string;
@@ -28,6 +28,7 @@ export default async function Movies({
                     {movies.map((movie) => (
                         <Movie
                             key={movie.id}
+                            media={movie.media_type}
                             id={movie.id}
                             image={movie.poster_path}
                             title={movie.title || movie.name}

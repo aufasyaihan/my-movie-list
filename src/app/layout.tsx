@@ -31,7 +31,7 @@ export default function RootLayout({
                 <header className="m-4 sticky top-5 z-10">
                     <Navbar />
                 </header>
-                <main className="px-4 flex-grow">{children}</main>
+                <main className="px-12 flex-grow">{children}</main>
                 <footer className="mt-8 bg-neutral-950 p-4">
                     <p className="text-center text-sm text-gray-500">
                         &copy; {new Date().getFullYear()} My Movie List
