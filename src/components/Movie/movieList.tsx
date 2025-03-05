@@ -1,5 +1,5 @@
 import Pagination from "@/components/pagination";
-import { MovieType } from "@/types/movie";
+import { MovieType } from "@/types/Movie";
 import Movie from "./movie";
 import { Suspense } from "react";
 import Loading from "../loading";
