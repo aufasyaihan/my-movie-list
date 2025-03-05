@@ -12,7 +12,7 @@ interface MovieProps {
 export default function Movie({ id, image, title, releaseDate }: MovieProps) {
     const year = new Date(releaseDate).getFullYear();
     return (
-        <Link href={`/movies/${id}`} className="flex flex-col items-center w-48 h-86 gap-1 group cursor-pointer">
+        <Link href={`/movie/${id}`} className="flex flex-col items-center w-full h-86 gap-1 group cursor-pointer">
             <div className="w-full h-full relative rounded-lg overflow-hidden">
                 <Image
                     className="object-cover group-hover:scale-105 transition-all ease-in-out duration-200"
