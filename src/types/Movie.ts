@@ -1,10 +1,8 @@
 export interface MovieType {
-    data: {
-        page: number;
-        results: Result[];
-        total_pages: number;
-        total_results: number;
-    };
+    page: number;
+    results: Result[];
+    total_pages: number;
+    total_results: number;
 }
 
 export interface Result {
