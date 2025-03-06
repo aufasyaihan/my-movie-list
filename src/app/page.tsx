@@ -1,21 +1,23 @@
-import MovieList from "@/components/Movie/movieList";
+import Movies from "@/components/Movie/movies";
 
 export default function Home() {
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
-            <MovieList
+            <Movies
                 title="Trending Now"
                 endpoint="/trending/all/week"
             />
-            <MovieList
+            <Movies
                 title="Popular Movies"
-                endpoint="/movie/now_playing"
+                endpoint="/now_playing"
                 limit={7}
+                type="movie"
             />
-            <MovieList
+            <Movies
                 title="Popular TV Shows"
-                endpoint="/tv/popular"
+                endpoint="/popular"
                 limit={7}
+                type="tv"
             />
         </section>
     );
