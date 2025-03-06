@@ -2,7 +2,7 @@ import Carousel from "@/components/carousel";
 import Movie from "@/components/Movie/movie";
 import Chips from "@/components/UI/chips";
 import Video from "@/components/video";
-import { getDataDetail } from "@/lib/utils";
+import { getDataDetail, getYear } from "@/lib/utils";
 import Image from "next/image";
 
 interface TVPageParams {
@@ -17,7 +17,7 @@ export default async function TVPage({ params }: TVPageParams) {
         images,
         recommendations,
     } = await getDataDetail(id, "tv");
-    const year = new Date(tv.first_air_date).getFullYear();
+    const year = getYear(tv.first_air_date);
     const teaser = video.results.find(
         (video) => video.type === "Teaser" || "Trailer"
     );
