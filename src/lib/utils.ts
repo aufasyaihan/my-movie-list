@@ -24,7 +24,6 @@ export async function getMovies(
         }
         const data: MovieType = await res.json();
         const movies = limit ? data.results.slice(0, limit) : data.results;
-        console.log(data.total_pages);
         const totalPages = data.total_pages > 500 ? 500 : data.total_pages;
         
         return { movies, totalPages: totalPages || 1};
