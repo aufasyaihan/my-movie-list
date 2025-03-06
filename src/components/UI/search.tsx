@@ -69,7 +69,7 @@ export default function Search({ placeholder, type, search }: SearchProps) {
                 onChange={(e) => setQuery(e.target.value)}
             />
             {search && (
-                <button className="p-2 rounded-r-md bg-neutral-600 hover:bg-white/20 cursor-pointer transition-all ease-in-out duration-200">
+                <button className="p-2 rounded-r-md bg-neutral-600">
                     <FaSearch />
                 </button>
             )}
@@ -88,7 +88,7 @@ export default function Search({ placeholder, type, search }: SearchProps) {
                                     href={`/${item.name ? "tv" : "movies"}/${
                                         item.id
                                     }`}
-                                    className="flex text-white hover:bg-neutral-700 p-2 rounded-md"
+                                    className="flex text-white hover:bg-neutral-700 p-2 rounded-sm"
                                 >
                                     {item.title || item.name}{" "}
                                     {!isNaN(year) && `(${year})`}

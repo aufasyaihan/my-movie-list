@@ -8,6 +8,15 @@ export function getYear(date: string) {
     return new Date(date).getFullYear();
 }
 
+export function getUser() {
+    if (typeof window !== "undefined") {
+        const data = localStorage.getItem("user");
+        return data ? JSON.parse(data) : null;
+    }
+    return null;
+}
+
+
 export async function getData(
     endpoint: string,
     page: number,
