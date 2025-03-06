@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Input from "./UI/input";
+import Search from "./UI/search";
 
 export default function Navbar() {
     return (
@@ -12,7 +12,7 @@ export default function Navbar() {
                 <Link href={"/tv"}>TV Shows</Link>
             </div>
             <div className="flex items-center gap-6">
-                <Input placeholder="Search Movie..." type="text" search />
+                <Search placeholder="Search Movie..." type="text" search />
                 <Link className="px-4 py-1 bg-neutral-600 font-bold rounded-md hover:bg-neutral-700 transition-all ease-in-out duration-200" href={"/login"}>Login</Link>
             </div>
         </nav>
