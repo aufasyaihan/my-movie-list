@@ -3,17 +3,21 @@ import { MovieDetailType } from "@/types/movie";
 import { MovieType } from "@/types/movies";
 import { TVType } from "@/types/serial";
 import { VideoType } from "@/types/video";
-import { error } from "console";
+
+export function getYear(date: string) {
+    return new Date(date).getFullYear();
+}
 
 export async function getData(
     endpoint: string,
     page: number,
     type?: string,
-    limit?: number
+    limit?: number,
+    query?: string
 ) {
     const url = `https://api.themoviedb.org/3${
         type ? "/" + type : ""
-    }${endpoint}?page=${page}`;
+    }${endpoint}?query=${query}&page=${page}`;
     const options = {
         method: "GET",
         headers: {
@@ -27,7 +31,6 @@ export async function getData(
     try {
         const res = await fetch(url, options);
         if (!res.ok) {
-            console.log(error);
             throw new Error("Failed to fetch data");
         }
         const data: MovieType = await res.json();
@@ -52,7 +55,6 @@ export async function getDataDetail<T extends "tv" | "movie">(
     const videoUrl = `https://api.themoviedb.org/3/${type}/${id}/videos`;
     const imageUrl = `https://api.themoviedb.org/3/${type}/${id}/images`;
     const recommendationsUrl = `https://api.themoviedb.org/3/${type}/${id}/recommendations`;
-    console.log(url);
 
     const options = {
         method: "GET",

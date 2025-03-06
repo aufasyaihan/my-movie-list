@@ -2,7 +2,7 @@ import Carousel from "@/components/carousel";
 import Movie from "@/components/Movie/movie";
 import Chips from "@/components/UI/chips";
 import Video from "@/components/video";
-import { getDataDetail } from "@/lib/utils";
+import { getDataDetail, getYear } from "@/lib/utils";
 import Image from "next/image";
 
 interface MoviePageParams {
@@ -15,7 +15,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
         id,
         "movie"
     );
-    const year = new Date(dataDetail.release_date).getFullYear();
+    const year = getYear(dataDetail.release_date);
     const teaser = video.results.find(
         (video) => video.type === "Teaser" || "Trailer"
     );
@@ -72,9 +72,11 @@ export default async function MoviePage({ params }: MoviePageParams) {
                     </div>
                     <div className="flex flex-col">
                         <h2 className="text-lg font-semibold">Overview</h2>
-                        <blockquote className="text-neutral-200 font-medium italic">
-                            &quot;{dataDetail.tagline}&quot;
-                        </blockquote>
+                        {dataDetail.tagline && (
+                            <blockquote className="text-neutral-200 font-medium italic">
+                                &quot;{dataDetail.tagline}&quot;
+                            </blockquote>
+                        )}
                         <p className="text-neutral-300">
                             {dataDetail.overview}
                         </p>
