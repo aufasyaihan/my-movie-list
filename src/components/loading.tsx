@@ -1,7 +1,7 @@
-export default function SkeletonCard() {
+export default function SkeletonCard({ limit = 10 } : { limit?: number }) {
     return (
         <div className="grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 w-full justify-between">
-            {Array.from({ length: 10 }).map((_, index) => (
+            {Array.from({ length: limit }).map((_, index) => (
                 <div
                     key={index}
                     className="flex flex-col items-center w-full h-86 gap-2"

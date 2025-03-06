@@ -22,7 +22,7 @@ export default function Movie({
     return (
         <Link
             href={`${url}/${id}`}
-            className="flex flex-col items-center w-full h-86 gap-1 group cursor-pointer"
+            className="flex flex-col items-center flex-shrink-0 w-56 h-96 gap-1 group cursor-pointer"
         >
             <div className="w-full h-full relative rounded-lg overflow-hidden">
                 <Image

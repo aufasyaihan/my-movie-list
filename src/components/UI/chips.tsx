@@ -5,9 +5,9 @@ interface ChipsProps {
 }
 
 const bgColors: Record<ChipsProps["type"], string> = {
-    age: "bg-red-700",
-    lang: "bg-blue-700",
-    status: "bg-green-700",
+    age: "bg-red-800",
+    lang: "bg-blue-800",
+    status: "bg-green-800",
     genre: "bg-neutral-700",
 };
 

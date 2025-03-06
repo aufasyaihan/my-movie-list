@@ -1,12 +1,19 @@
+import { ImageType } from "@/types/image";
 import { MovieDetailType } from "@/types/movie";
 import { MovieType } from "@/types/movies";
+import { TVType } from "@/types/serial";
+import { VideoType } from "@/types/video";
+import { error } from "console";
 
-export async function getMovies(
+export async function getData(
     endpoint: string,
     page: number,
+    type?: string,
     limit?: number
 ) {
-    const url = `https://api.themoviedb.org/3${endpoint}?page=${page}`;
+    const url = `https://api.themoviedb.org/3${
+        type ? "/" + type : ""
+    }${endpoint}?page=${page}`;
     const options = {
         method: "GET",
         headers: {
@@ -20,19 +27,33 @@ export async function getMovies(
     try {
         const res = await fetch(url, options);
         if (!res.ok) {
-            throw new Error("Failed to fetch movies");
+            console.log(error);
+            throw new Error("Failed to fetch data");
         }
         const data: MovieType = await res.json();
         const movies = limit ? data.results.slice(0, limit) : data.results;
         const totalPages = data.total_pages > 500 ? 500 : data.total_pages;
-        
-        return { movies, totalPages: totalPages || 1};
+
+        return { movies, totalPages: totalPages || 1 };
     } catch (error) {
         throw new Error((error as Error).message);
     }
 }
-export async function getMovieDetail(id: string) {
-    const url = `https://api.themoviedb.org/3/movie/${id}`;
+export async function getDataDetail<T extends "tv" | "movie">(
+    id: string,
+    type: T
+): Promise<{
+    dataDetail: T extends "tv" ? TVType : MovieDetailType;
+    video: VideoType;
+    images: ImageType;
+    recommendations: MovieType;
+}> {
+    const url = `https://api.themoviedb.org/3/${type}/${id}`;
+    const videoUrl = `https://api.themoviedb.org/3/${type}/${id}/videos`;
+    const imageUrl = `https://api.themoviedb.org/3/${type}/${id}/images`;
+    const recommendationsUrl = `https://api.themoviedb.org/3/${type}/${id}/recommendations`;
+    console.log(url);
+
     const options = {
         method: "GET",
         headers: {
@@ -44,12 +65,24 @@ export async function getMovieDetail(id: string) {
     };
 
     try {
-        const res = await fetch(url, options);
-        if (!res.ok) {
+        const dataRes = await fetch(url, options);
+        if (!dataRes.ok) {
             throw new Error("Failed to fetch movies");
         }
-        const data: MovieDetailType = await res.json();
-        return data;
+        const dataDetail = (await dataRes.json()) as T extends "tv"
+            ? TVType
+            : MovieDetailType;
+
+        const videoRes = await fetch(videoUrl, options);
+        const video: VideoType = await videoRes.json();
+
+        const imageRes = await fetch(imageUrl, options);
+        const images: ImageType = await imageRes.json();
+
+        const recommendationsRes = await fetch(recommendationsUrl, options);
+        const recommendations: MovieType = await recommendationsRes.json();
+
+        return { dataDetail, video, images, recommendations };
     } catch (error) {
         throw new Error((error as Error).message);
     }
