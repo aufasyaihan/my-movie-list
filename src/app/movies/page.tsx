@@ -3,11 +3,9 @@ import Movies from "@/components/Movie/movies";
 export default async function MoviesPage({
     searchParams,
 }: {
-    searchParams: {
-        page?: Promise<string>;
-    };
+    searchParams: Promise<{ page?: string }>;
 }) {
-    const page = await searchParams.page;
+    const page = (await searchParams).page;
     const currentPage = page ? parseInt(page) : 1;
 
     return (
