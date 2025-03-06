@@ -8,6 +8,7 @@ interface MovieProps {
     limit?: number;
     page?: number;
     paginate?: boolean;
+    media?: string;
 }
 
 export default async function Movies({
@@ -16,6 +17,7 @@ export default async function Movies({
     limit,
     paginate,
     page = 1,
+    media,
 }: MovieProps) {
     const { movies, totalPages } = await getMovies(endpoint, page, limit);
 
@@ -28,7 +30,7 @@ export default async function Movies({
                     {movies.map((movie) => (
                         <Movie
                             key={movie.id}
-                            media={movie.media_type}
+                            media={movie.media_type || media}
                             id={movie.id}
                             image={movie.poster_path}
                             title={movie.title || movie.name}

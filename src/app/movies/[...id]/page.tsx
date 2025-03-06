@@ -36,15 +36,21 @@ export default async function MoviePage({ params }: MoviePageParams) {
                             {movie.vote_count} Votes)
                         </h1>
                     </div>
-                    <div className="flex gap-2">
-                        {movie.adult && <Chips>21+</Chips>}
-                        {movie.genres.map((genre) => (
-                            <Chips key={genre.id}>{genre.name}</Chips>
-                        ))}
-                        <Chips style="uppercase">
-                            {movie.original_language}
-                        </Chips>
-                        <Chips>{movie.status}</Chips>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex gap-2">
+                            {movie.adult && <Chips type="age">21+</Chips>}
+                            <Chips type="lang" style="uppercase">
+                                {movie.original_language}
+                            </Chips>
+                            <Chips type="status">{movie.status}</Chips>
+                        </div>
+                        <div className="flex gap-2">
+                            {movie.genres.map((genre) => (
+                                <Chips type="genre" key={genre.id}>
+                                    {genre.name}
+                                </Chips>
+                            ))}
+                        </div>
                     </div>
                     <div className="flex flex-col">
                         <h2 className="text-lg font-semibold">

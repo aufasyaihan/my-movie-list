@@ -10,7 +10,7 @@ export default async function MoviesPage({
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
-            <MovieList title="All Movies" endpoint="/trending/movie/week" page={currentPage} paginate/>
+            <MovieList title="All Movies" endpoint="/movie/popular" page={currentPage} paginate media="movie"/>
         </section>
     );
 }

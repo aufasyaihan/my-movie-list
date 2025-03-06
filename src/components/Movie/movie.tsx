@@ -4,7 +4,7 @@ import { FaRegPlayCircle } from "react-icons/fa";
 
 interface MovieProps {
     id: number;
-    media: string;
+    media: string | undefined;
     image: string;
     title: string;
     releaseDate: string;
@@ -18,7 +18,7 @@ export default function Movie({
     releaseDate,
 }: MovieProps) {
     const year = new Date(releaseDate).getFullYear();
-    const url = media === "movie" ? "/movies" : "tv";
+    const url = media === "movie" ? "/movies" : "/tv";
     return (
         <Link
             href={`${url}/${id}`}
