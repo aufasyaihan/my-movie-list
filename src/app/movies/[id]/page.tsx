@@ -112,7 +112,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
                 <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
                     You May Like
                 </h2>
-                <div className="flex gap-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
                     {limitRecommendations.map((recommendation) => (
                         <Movie
                             key={recommendation.id}

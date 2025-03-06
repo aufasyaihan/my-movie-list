@@ -10,14 +10,16 @@ export default function Home() {
             <Movies
                 title="Popular Movies"
                 endpoint="/now_playing"
-                limit={7}
+                limit={10}
                 type="movie"
+                scroll
             />
             <Movies
                 title="Popular TV Shows"
                 endpoint="/popular"
-                limit={7}
+                limit={10}
                 type="tv"
+                scroll
             />
         </section>
     );

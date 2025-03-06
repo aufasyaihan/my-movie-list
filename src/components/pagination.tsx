@@ -37,7 +37,7 @@ export default function Pagination({
         className={`p-2 rounded ${
           currentPage === 1
             ? "bg-neutral-300 text-neutral-500 pointer-events-none"
-            : "bg-amber-600 text-white hover:bg-amber-700 transition"
+            : "bg-neutral-600 text-white hover:bg-neutral-700 transition"
         }`}
       >
         <MdArrowBackIosNew />
@@ -50,8 +50,8 @@ export default function Pagination({
             href={`${url}?page=${page}`}
             className={`px-4 py-1 rounded ${
               page === currentPage
-                ? "bg-amber-500 text-white font-bold pointer-events-none"
-                : "bg-amber-700 text-white hover:bg-amber-900 transition"
+                ? "bg-amber-700 text-white font-bold pointer-events-none"
+                : "bg-neutral-700 text-white hover:bg-neutral-900 transition"
             }`}
           >
             {page}
@@ -68,7 +68,7 @@ export default function Pagination({
         className={`p-2 rounded ${
           currentPage === totalPages
             ? "bg-neutral-300 text-neutral-500 pointer-events-none"
-            : "bg-amber-600 text-white hover:bg-amber-700 transition"
+            : "bg-neutral-600 text-white hover:bg-neutral-700 transition"
         }`}
       >
         <MdArrowForwardIos />
