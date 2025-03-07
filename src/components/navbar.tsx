@@ -57,7 +57,7 @@ export default function Navbar() {
                 <button className="cursor-pointer" onClick={() => setHamburger(!hamburger)}>
                     <RxHamburgerMenu className="text-3xl " />
                 </button>
-                {hamburger && <HamburgerMenu user={user} setIsOpen={setIsOpen} handleLogout={handleLogout} />}
+                {hamburger && <HamburgerMenu user={user} handleLogout={handleLogout} setHamburger={setHamburger} />}
             </div>
             <div className=" relative items-center gap-4 hidden md:flex">
                 <Search placeholder="Search Movie..." type="text" />

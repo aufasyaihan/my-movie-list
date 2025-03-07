@@ -6,14 +6,14 @@ import { User } from "@/types/user";
 
 interface HamburgerMenuProps {
     user: User | null;
-    setIsOpen: (isOpen: boolean) => void;
     handleLogout: () => void;
+    setHamburger: (hamburger: boolean) => void;
 }
 
 export default function HamburgerMenu({
     user,
-    setIsOpen,
     handleLogout,
+    setHamburger,
 }: HamburgerMenuProps) {
     return (
         <div className="flex p-2 bg-neutral-800 rounded-md absolute top-10 right-0 flex-col gap-2 w-72 md:hidden">
@@ -21,14 +21,14 @@ export default function HamburgerMenu({
             <Link
                 className="p-2 hover:bg-neutral-700 rounded-sm"
                 href={"/movies"}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setHamburger(false)}
             >
                 Movies
             </Link>
             <Link
                 className="p-2 hover:bg-neutral-700 rounded-sm"
                 href={"/tv"}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setHamburger(false)}
             >
                 TV Shows
             </Link>
@@ -37,7 +37,7 @@ export default function HamburgerMenu({
                     <Link
                         className="flex gap-2 items-center p-2 hover:bg-neutral-700 rounded-sm"
                         href={"/profile"}
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => setHamburger(false)}
                     >
                         <span>
                             <MdPerson />

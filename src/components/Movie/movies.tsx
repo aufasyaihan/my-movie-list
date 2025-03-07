@@ -32,8 +32,8 @@ export default async function Movies({
                 <div
                     className={
                         !scroll
-                            ? `grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full`
-                            : "flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar"
+                            ? `grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 w-full`
+                            : "flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar flex-grow-0"
                     }
                 >
                     {movies.map((movie) => (

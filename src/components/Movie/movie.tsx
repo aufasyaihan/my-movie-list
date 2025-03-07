@@ -22,7 +22,7 @@ export default function Movie({
     return (
         <Link
             href={`${url}/${id}`}
-            className="flex flex-col items-center flex-shrink-0 w-56 h-96 gap-1 group cursor-pointer"
+            className="flex flex-col items-center flex-shrink-0 w-24 h-40 sm:w-48 sm:h-72 md:w-56 md:h-96 gap-1 group cursor-pointer"
         >
             <div className="w-full h-full relative rounded-lg overflow-hidden">
                 <Image
@@ -33,7 +33,7 @@ export default function Movie({
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute flex items-center justify-center inset-0 opacity-0 bg-black/50 backdrop-blur-xs group-hover:opacity-100 transition-all ease-in-out duration-200">
-                    <FaRegPlayCircle className="group-hover:scale-[500%] transition-all ease-in-out duration-200" />
+                    <FaRegPlayCircle className="group-hover:scale-200 md:group-hover:scale-[500%] transition-all ease-in-out duration-200" />
                 </div>
             </div>
             <div className="flex justify-start font-semibold capitalize gap-1 w-full px-1">
