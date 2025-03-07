@@ -1,8 +1,44 @@
+# MyMovieList
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Project Description
+
+MyMovieList is a web application that provides detailed information about movies and TV shows. It features trailers, images, and recommendations based on the selected movie or TV show. The application aims to offer users a comprehensive and engaging experience by presenting up-to-date and relevant content.
+
+## Features
+- Search Movies or TV Shows
+- List of Movies or TV Shows
+- Detailed Information
+- User Authentication
+- Responsive Layouts and UI Design
 
 ## Getting Started
 
-First, run the development server:
+### Installation
+
+First, clone the repository:
+
+```bash
+git clone https://github.com/your-username/my-movie-list.git
+cd my-movie-list
+```
+
+Then, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Running the Development Server
+
+After installing the dependencies, run the development server:
 
 ```bash
 npm run dev
@@ -19,6 +55,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Assumptions and Limitations
+
+- The application assumes that users have a stable internet connection to fetch movie details.
+- The current implementation does not support user activities, such as reviews, favorites, and watchlist.
 
 ## Learn More
 
