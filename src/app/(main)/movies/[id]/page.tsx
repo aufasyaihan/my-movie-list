@@ -115,6 +115,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
                 <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
                     {limitRecommendations.map((recommendation) => (
                         <Movie
+                            scroll
                             key={recommendation.id}
                             media={recommendation.media_type}
                             id={recommendation.id}

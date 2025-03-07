@@ -32,12 +32,13 @@ export default async function Movies({
                 <div
                     className={
                         !scroll
-                            ? `grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 w-full`
+                            ? `grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full`
                             : "flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar flex-grow-0"
                     }
                 >
                     {movies.map((movie) => (
                         <Movie
+                        scroll={scroll}
                             key={movie.id}
                             media={movie.media_type || type}
                             id={movie.id}

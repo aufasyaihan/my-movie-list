@@ -8,6 +8,7 @@ interface MovieProps {
     image: string;
     title: string;
     releaseDate: string;
+    scroll?: boolean;
 }
 
 export default function Movie({
@@ -16,13 +17,16 @@ export default function Movie({
     image,
     title,
     releaseDate,
+    scroll,
 }: MovieProps) {
     const year = new Date(releaseDate).getFullYear();
     const url = media === "movie" ? "/movies" : "/tv";
     return (
         <Link
             href={`${url}/${id}`}
-            className="flex flex-col items-center flex-shrink-0 w-24 h-40 sm:w-48 sm:h-72 md:w-56 md:h-96 gap-1 group cursor-pointer"
+            className={`flex flex-col items-center flex-shrink-0 ${
+                scroll ? "w-24 sm:w-48 md:w-50 xl:w-56 aspect-[2/3]" : ""
+            } gap-1 group cursor-pointer aspect-[2/3]`}
         >
             <div className="w-full h-full relative rounded-lg overflow-hidden">
                 <Image
@@ -36,7 +40,7 @@ export default function Movie({
                     <FaRegPlayCircle className="group-hover:scale-200 md:group-hover:scale-[500%] transition-all ease-in-out duration-200" />
                 </div>
             </div>
-            <div className="flex justify-start font-semibold capitalize gap-1 w-full px-1">
+            <div className="flex justify-start font-semibold text-xs md:text-base capitalize gap-1 w-full px-1">
                 <p className="overflow-hidden text-ellipsis text-nowrap">
                     {title}
                 </p>
