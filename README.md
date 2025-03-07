@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Project Description
 
+![image](https://github.com/user-attachments/assets/2ff303f4-e81f-4186-90f9-2ca3cc5ecbd5)
+
 MyMovieList is a web application that provides detailed information about movies and TV shows. It features trailers, images, and recommendations based on the selected movie or TV show. The application aims to offer users a comprehensive and engaging experience by presenting up-to-date and relevant content.
 
 ## Features
