@@ -10,11 +10,13 @@ import { User } from "@/types/user";
 import { MdPerson } from "react-icons/md";
 import { RxExit, RxHamburgerMenu } from "react-icons/rx";
 import HamburgerMenu from "./hamburger";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [user, setUser] = useState<User | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [hamburger, setHamburger] = useState(false);
+    const path = usePathname();
 
     useEffect(() => {
         const data = getUser();
@@ -39,14 +41,14 @@ export default function Navbar() {
                     <span className="text-amber-600">My</span>MovieList
                 </Link>
                 <Link
-                    className="hidden md:block"
+                    className={`${path === "/movies" ? "font-bold text-amber-600" : ""} hidden md:block`}
                     href={"/movies"}
                     onClick={() => setIsOpen(false)}
                 >
                     Movies
                 </Link>
                 <Link
-                    className="hidden md:block"
+                    className={`${path === "/tv" ? "font-bold text-amber-600" : ""} hidden md:block`}
                     href={"/tv"}
                     onClick={() => setIsOpen(false)}
                 >
