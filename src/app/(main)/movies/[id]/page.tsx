@@ -16,24 +16,31 @@ export default async function MoviePage({ params }: MoviePageParams) {
         "movie"
     );
     const year = getYear(dataDetail.release_date);
-    const teaser = video.results.find(
-        (video) => (video.type === "Teaser" || video.type === "Trailer") && (video.name.includes("Trailer") || video.name.includes("Teaser"))
-    );
-    const backdrops = images.backdrops;
+    const teaser =
+        video.results.length > 0 &&
+        video.results.find(
+            (video) =>
+                (video.type === "Teaser" || video.type === "Trailer") &&
+                (video.name.includes("Trailer") ||
+                    video.name.includes("Teaser"))
+        );
+    const backdrops = images.backdrops.length > 0 && images.backdrops;
     const limitSimilar = similar.results.slice(0, 7);
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
             <div className="flex gap-4 w-full justify-center flex-wrap md:flex-nowrap">
-                <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
-                    <Image
-                        className="object-cover"
-                        src={`https://image.tmdb.org/t/p/w500${dataDetail.poster_path}`}
-                        alt={dataDetail.original_title}
-                        priority
-                        fill
-                    />
-                </div>
+                {dataDetail.poster_path && (
+                    <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
+                        <Image
+                            className="object-cover"
+                            src={`https://image.tmdb.org/t/p/w500${dataDetail.poster_path}`}
+                            alt={dataDetail.original_title}
+                            priority
+                            fill
+                        />
+                    </div>
+                )}
                 <div className="flex flex-col gap-4 w-full">
                     <div className="flex gap-2 justify-start items-center flex-wrap md:flex-nowrap">
                         <h1 className="text-lg md:text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
@@ -60,16 +67,18 @@ export default async function MoviePage({ params }: MoviePageParams) {
                             ))}
                         </div>
                     </div>
-                    <div className="flex flex-col">
-                        <h2 className="md:text-lg font-semibold">
-                            Production Companies
-                        </h2>
-                        <p className="text-sm md:text-md text-neutral-300">
-                            {dataDetail.production_companies
-                                .map((company) => company.name)
-                                .join(", ")}
-                        </p>
-                    </div>
+                    {dataDetail.production_companies.length > 0 && (
+                        <div className="flex flex-col">
+                            <h2 className="md:text-lg font-semibold">
+                                Production Companies
+                            </h2>
+                            <p className="text-sm md:text-md text-neutral-300">
+                                {dataDetail.production_companies
+                                    .map((company) => company.name)
+                                    .join(", ")}
+                            </p>
+                        </div>
+                    )}
                     <div className="flex flex-col">
                         <h2 className="md:text-lg font-semibold">Overview</h2>
                         {dataDetail.tagline && (
@@ -83,29 +92,35 @@ export default async function MoviePage({ params }: MoviePageParams) {
                     </div>
                 </div>
             </div>
-            <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-4">
+            <div
+                className={`flex w-full justify-between flex-wrap md:flex-nowrap gap-4 ${
+                    !teaser ? "flex-row-reverse" : ""
+                }`}
+            >
                 <div
-                    className={`flex w-full ${
-                        !teaser ? "flex-row-reverse" : ""
-                    } justify-between gap-4`}
+                    className={`flex flex-col gap-4 w-full ${
+                        !teaser ? "hidden lg:block" : ""
+                    }`}
                 >
-                    <div className="flex flex-col gap-4 w-full">
-                        {teaser && (
-                            <>
-                                <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
-                                    Teaser
-                                </h2>
+                    {teaser && (
+                        <>
+                            <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
+                                Teaser
+                            </h2>
 
-                                <Video name={teaser.name} id={teaser.key} />
-                            </>
-                        )}
-                    </div>
+                            <Video name={teaser.name} id={teaser.key} />
+                        </>
+                    )}
                 </div>
                 <div className="flex flex-col gap-4 w-full">
-                    <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
-                        Images
-                    </h2>
-                    <Carousel images={backdrops} />
+                    {backdrops && (
+                        <>
+                            <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
+                                Images
+                            </h2>
+                            <Carousel images={backdrops} />
+                        </>
+                    )}
                 </div>
             </div>
             <div className="flex flex-col gap-4 w-full">
@@ -122,8 +137,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
                             image={similar.poster_path}
                             title={similar.title || similar.name}
                             releaseDate={
-                                similar.release_date ||
-                                similar.first_air_date
+                                similar.release_date || similar.first_air_date
                             }
                         />
                     ))}

@@ -11,54 +11,61 @@ interface TVPageParams {
 
 export default async function TVPage({ params }: TVPageParams) {
     const { id } = await params;
-    const {
-        dataDetail: tv,
-        video,
-        images,
-        similar,
-    } = await getDataDetail(id, "tv");
-    const year = getYear(tv.first_air_date);
-    const teaser = video.results.find(
-        (video) => (video.type === "Teaser" || video.type === "Trailer") && (video.name.includes("Trailer") || video.name.includes("Teaser"))
+    const { dataDetail, video, images, similar } = await getDataDetail(
+        id,
+        "tv"
     );
-    const backdrops = images.backdrops;
+    const year = getYear(dataDetail.first_air_date);
+    const teaser =
+        video.results.length > 0 &&
+        video.results.find(
+            (video) =>
+                (video.type === "Teaser" || video.type === "Trailer") &&
+                (video.name.includes("Trailer") ||
+                    video.name.includes("Teaser"))
+        );
+    const backdrops = images.backdrops.length > 0 && images.backdrops;
     const limitSimilar = similar.results.slice(0, 7);
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
             <div className="flex gap-4 w-full justify-center flex-wrap md:flex-nowrap">
-                <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
-                    <Image
-                        className="object-cover"
-                        src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
-                        alt={tv.original_name}
-                        priority
-                        fill
-                    />
-                </div>
+                {dataDetail.poster_path && (
+                    <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
+                        <Image
+                            className="object-cover"
+                            src={`https://image.tmdb.org/t/p/w500${dataDetail.poster_path}`}
+                            alt={dataDetail.original_name}
+                            priority
+                            fill
+                        />
+                    </div>
+                )}
                 <div className="flex flex-col gap-4 w-full">
                     <div className="flex gap-2 justify-start items-center flex-wrap md:flex-nowrap">
                         <h1 className="text-lg md:text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
-                            {tv.name} ({year})
+                            {dataDetail.name} ({year})
                         </h1>
                         <h1 className="font-semibold">
-                            ⭐ {tv.vote_average.toFixed(1)} ({tv.vote_count}{" "}
-                            Votes)
+                            ⭐ {dataDetail.vote_average.toFixed(1)} (
+                            {dataDetail.vote_count} Votes)
                         </h1>
                     </div>
                     <div className="flex flex-col gap-2">
                         <div className="flex gap-2">
-                            {tv.adult && <Chips type="age">21+</Chips>}
+                            {dataDetail.adult && <Chips type="age">21+</Chips>}
                             <Chips type="lang" style="uppercase">
-                                {tv.original_language}
+                                {dataDetail.original_language}
                             </Chips>
-                            <Chips type="status">{tv.status}</Chips>
+                            <Chips type="status">{dataDetail.status}</Chips>
                             <Chips type="status">
-                                {tv.in_production ? "Ongoing" : "Finished"}
+                                {dataDetail.in_production
+                                    ? "Ongoing"
+                                    : "Finished"}
                             </Chips>
                         </div>
                         <div className="flex gap-2">
-                            {tv.genres.map((genre) => (
+                            {dataDetail.genres.map((genre) => (
                                 <Chips type="genre" key={genre.id}>
                                     {genre.name}
                                 </Chips>
@@ -71,7 +78,7 @@ export default async function TVPage({ params }: TVPageParams) {
                                 Total Seasons
                             </h2>
                             <p className="text-sm md:text-md text-neutral-300">
-                                {tv.number_of_seasons}
+                                {dataDetail.number_of_seasons}
                             </p>
                         </div>
                         <div className="flex flex-col">
@@ -79,37 +86,39 @@ export default async function TVPage({ params }: TVPageParams) {
                                 Total Episodes
                             </h2>
                             <p className="text-sm md:text-md text-neutral-300">
-                                {tv.number_of_episodes}
+                                {dataDetail.number_of_episodes}
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col">
-                        <h2 className="md:text-lg font-semibold">
-                            Production Companies
-                        </h2>
-                        <p className="text-sm md:text-md text-neutral-300">
-                            {tv.production_companies
-                                .map((company) => company.name)
-                                .join(", ")}
-                        </p>
-                    </div>
+                    {dataDetail.production_companies.length > 0 && (
+                        <div className="flex flex-col">
+                            <h2 className="md:text-lg font-semibold">
+                                Production Companies
+                            </h2>
+                            <p className="text-sm md:text-md text-neutral-300">
+                                {dataDetail.production_companies
+                                    .map((company) => company.name)
+                                    .join(", ")}
+                            </p>
+                        </div>
+                    )}
                     <div className="flex flex-col">
                         <h2 className="md:text-lg font-semibold">Overview</h2>
-                        {tv.tagline && (
+                        {dataDetail.tagline && (
                             <blockquote className="text-sm md:text-md text-neutral-200 font-medium italic">
-                                &quot;{tv.tagline}&quot;
+                                &quot;{dataDetail.tagline}&quot;
                             </blockquote>
                         )}
                         <p className="text-sm md:text-md text-neutral-300">
-                            {tv.overview}
+                            {dataDetail.overview}
                         </p>
                     </div>
                 </div>
             </div>
             <div
-                className={`flex w-full flex-wrap md:flex-nowrap ${
+                className={`flex w-full flex-wrap md:flex-nowrap  justify-between gap-4${
                     !teaser ? "flex-row-reverse" : ""
-                } justify-between gap-4`}
+                }`}
             >
                 <div
                     className={`flex flex-col gap-4 w-full ${
@@ -126,12 +135,14 @@ export default async function TVPage({ params }: TVPageParams) {
                         </>
                     )}
                 </div>
-                <div className="flex flex-col gap-4 w-full">
-                    <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
-                        Images
-                    </h2>
-                    <Carousel images={backdrops} />
-                </div>
+                {backdrops && (
+                    <>
+                        <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
+                            Images
+                        </h2>
+                        <Carousel images={backdrops} />
+                    </>
+                )}
             </div>
             <div className="flex flex-col gap-4 w-full">
                 <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
