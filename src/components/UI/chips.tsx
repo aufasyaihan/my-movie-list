@@ -17,7 +17,7 @@ export default function Chips({ children, type, style, ...props }: ChipsProps) {
             {...props}
             className={`w-fit ${
                 bgColors[type] || "bg-neutral-700"
-            } text-white px-2 py-1 rounded-md ${style}`}
+            } text-white px-2 py-1 rounded-md ${style} text-xs md:text-md `}
         >
             {children}
         </button>

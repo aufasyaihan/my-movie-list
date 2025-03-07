@@ -26,7 +26,7 @@ export default async function TVPage({ params }: TVPageParams) {
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
-            <div className="flex gap-4 w-full h-full">
+            <div className="flex gap-4 w-full justify-center flex-wrap md:flex-nowrap">
                 <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                         className="object-cover"
@@ -37,8 +37,8 @@ export default async function TVPage({ params }: TVPageParams) {
                     />
                 </div>
                 <div className="flex flex-col gap-4 w-full">
-                    <div className="flex gap-2 justify-start items-center">
-                        <h1 className="text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
+                    <div className="flex gap-2 justify-start items-center flex-wrap md:flex-nowrap">
+                        <h1 className="text-lg md:text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
                             {tv.name} ({year})
                         </h1>
                         <h1 className="font-semibold">
@@ -67,49 +67,55 @@ export default async function TVPage({ params }: TVPageParams) {
                     </div>
                     <div className="flex gap-4">
                         <div className="flex flex-col">
-                            <h2 className="text-lg font-semibold">
+                            <h2 className="md:text-lg font-semibold">
                                 Total Seasons
                             </h2>
-                            <p className="text-neutral-300">
+                            <p className="text-sm md:text-md text-neutral-300">
                                 {tv.number_of_seasons}
                             </p>
                         </div>
                         <div className="flex flex-col">
-                            <h2 className="text-lg font-semibold">
+                            <h2 className="md:text-lg font-semibold">
                                 Total Episodes
                             </h2>
-                            <p className="text-neutral-300">
+                            <p className="text-sm md:text-md text-neutral-300">
                                 {tv.number_of_episodes}
                             </p>
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <h2 className="text-lg font-semibold">
+                        <h2 className="md:text-lg font-semibold">
                             Production Companies
                         </h2>
-                        <p className="text-neutral-300">
+                        <p className="text-sm md:text-md text-neutral-300">
                             {tv.production_companies
                                 .map((company) => company.name)
                                 .join(", ")}
                         </p>
                     </div>
                     <div className="flex flex-col">
-                        <h2 className="text-lg font-semibold">Overview</h2>
+                        <h2 className="md:text-lg font-semibold">Overview</h2>
                         {tv.tagline && (
-                            <blockquote className="text-neutral-200 font-medium italic">
+                            <blockquote className="text-sm md:text-md text-neutral-200 font-medium italic">
                                 &quot;{tv.tagline}&quot;
                             </blockquote>
                         )}
-                        <p className="text-neutral-300">{tv.overview}</p>
+                        <p className="text-sm md:text-md text-neutral-300">
+                            {tv.overview}
+                        </p>
                     </div>
                 </div>
             </div>
             <div
-                className={`flex w-full ${
+                className={`flex w-full flex-wrap md:flex-nowrap ${
                     !teaser ? "flex-row-reverse" : ""
                 } justify-between gap-4`}
             >
-                <div className="flex flex-col gap-4 w-full">
+                <div
+                    className={`flex flex-col gap-4 w-full ${
+                        !teaser ? "hidden lg:block" : ""
+                    }`}
+                >
                     {teaser && (
                         <>
                             <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">

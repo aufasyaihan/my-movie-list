@@ -24,7 +24,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
-            <div className="flex gap-4 w-full">
+            <div className="flex gap-4 w-full justify-center flex-wrap md:flex-nowrap">
                 <div className="w-64 h-96 relative rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                         className="object-cover"
@@ -35,8 +35,8 @@ export default async function MoviePage({ params }: MoviePageParams) {
                     />
                 </div>
                 <div className="flex flex-col gap-4 w-full">
-                    <div className="flex gap-2 justify-start items-center">
-                        <h1 className="text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
+                    <div className="flex gap-2 justify-start items-center flex-wrap md:flex-nowrap">
+                        <h1 className="text-lg md:text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
                             {dataDetail.title} ({year})
                         </h1>
                         <h1 className="font-semibold">
@@ -61,29 +61,29 @@ export default async function MoviePage({ params }: MoviePageParams) {
                         </div>
                     </div>
                     <div className="flex flex-col">
-                        <h2 className="text-lg font-semibold">
+                        <h2 className="md:text-lg font-semibold">
                             Production Companies
                         </h2>
-                        <p className="text-neutral-300">
+                        <p className="text-sm md:text-md text-neutral-300">
                             {dataDetail.production_companies
                                 .map((company) => company.name)
                                 .join(", ")}
                         </p>
                     </div>
                     <div className="flex flex-col">
-                        <h2 className="text-lg font-semibold">Overview</h2>
+                        <h2 className="md:text-lg font-semibold">Overview</h2>
                         {dataDetail.tagline && (
-                            <blockquote className="text-neutral-200 font-medium italic">
+                            <blockquote className="text-sm md:text-md text-neutral-200 font-medium italic">
                                 &quot;{dataDetail.tagline}&quot;
                             </blockquote>
                         )}
-                        <p className="text-neutral-300">
+                        <p className="text-sm md:text-md text-neutral-300">
                             {dataDetail.overview}
                         </p>
                     </div>
                 </div>
             </div>
-            <div className="flex w-full justify-between gap-4">
+            <div className="flex w-full justify-between flex-wrap md:flex-nowrap gap-4">
                 <div
                     className={`flex w-full ${
                         !teaser ? "flex-row-reverse" : ""

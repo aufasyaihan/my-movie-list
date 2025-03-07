@@ -28,9 +28,9 @@ export default function Carousel({ images }: { images: Backdrop[] }) {
     };
 
     return (
-        <div className="relative w-full h-[350px] overflow-hidden">
+        <div className="relative w-full md:h-[350px] overflow-hidden">
             <div
-                className="flex transition-transform duration-500 ease-in-out h-full w-full"
+                className="flex transition-transform duration-500 ease-in-out md:h-full w-full"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 {img.map((img, index) => (
@@ -49,20 +49,20 @@ export default function Carousel({ images }: { images: Backdrop[] }) {
                 onClick={prevSlide}
                 className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full cursor-pointer"
             >
-                <MdArrowBackIosNew />
+                <MdArrowBackIosNew className="text-xs md:text-md" />
             </button>
             <button
                 onClick={nextSlide}
                 className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full cursor-pointer"
             >
-                <MdArrowForwardIos />
+                <MdArrowForwardIos className="text-xs md:text-md" />
             </button>
 
             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
                 {img.map((_, index) => (
                     <span
                         key={index}
-                        className={`w-3 h-3 rounded-full ${
+                        className={`w-1 h-1 md:w-3 md:h-3 rounded-full ${
                             index === currentIndex ? "bg-white" : "bg-gray-400"
                         }`}
                     />

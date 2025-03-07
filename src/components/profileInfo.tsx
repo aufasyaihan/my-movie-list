@@ -49,7 +49,7 @@ export default function ProfileInfo() {
                         {error}
                     </p>
                 )}
-                <div className="flex flex-wrap lg:flex-nowrap gap-2 lg:gap-4">
+                <div className="flex flex-wrap sm:flex-nowrap gap-2 lg:gap-4">
                     <Input
                         type="text"
                         label="First Name"

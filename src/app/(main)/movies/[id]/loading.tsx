@@ -2,11 +2,11 @@ import SkeletonCard from "@/components/skeletonCard";
 
 export default function Loading() {
     return (
-        <section className="flex flex-col gap-4 items-center justify-start h-full animate-pulse">
-            <div className="flex gap-4 w-full">
+        <section className="flex flex-col gap-4 items-center justify-start animate-pulse">
+            <div className="flex gap-4 flex-wrap justify-center md:flex-nowrap w-full">
                 <div className="w-52 h-86 bg-neutral-700 rounded-lg" />
                 <div className="flex flex-col gap-4 w-full">
-                    <div className="flex gap-2 justify-start items-center">
+                    <div className="flex gap-2 flex-wrap md:flex-nowrap justify-start items-center">
                         <div className="h-8 w-3/4 bg-neutral-700 rounded-md" />
                         <div className="h-6 w-1/4 bg-neutral-700 rounded-md" />
                     </div>
@@ -34,7 +34,7 @@ export default function Loading() {
                     </div>
                 </div>
             </div>
-            <div className="flex w-full justify-between gap-4">
+            <div className="flex w-full flex-wrap md:flex-nowrap justify-between gap-4">
                 <div className="flex flex-col gap-4 w-full">
                     <div className="h-6 w-1/4 bg-neutral-700 rounded-md" />
                     <div className="h-48 w-full bg-neutral-700 rounded-md" />
@@ -46,7 +46,7 @@ export default function Loading() {
             </div>
             <div className="flex flex-col gap-4 w-full">
                 <div className="h-6 w-1/4 bg-neutral-700 rounded-md" />
-                <SkeletonCard limit={7} />
+                <SkeletonCard limit={7} scroll />
             </div>
         </section>
     );
