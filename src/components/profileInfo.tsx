@@ -112,7 +112,7 @@ export default function ProfileInfo() {
                     }
                 />
                 <div className="flex justify-end">
-                    <button className="bg-neutral-700 hover:bg-neutral-600 px-4 py-2 rounded-md cursor-pointer transition-colors ease-in-out duration-200" disabled={!isChanged}>
+                    <button className="bg-neutral-950 hover:bg-neutral-800 px-4 py-2 rounded-md cursor-pointer transition-colors ease-in-out duration-200 disabled:cursor-default disabled:bg-neutral-600 disabled:text-neutral-400" disabled={!isChanged}>
                         Save
                     </button>
                 </div>
