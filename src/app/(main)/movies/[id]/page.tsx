@@ -17,7 +17,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
     );
     const year = getYear(dataDetail.release_date);
     const teaser = video.results.find(
-        (video) => video.type === "Teaser" || "Trailer"
+        (video) => (video.type === "Teaser" || video.type === "Trailer") && (video.name.includes("Trailer") || video.name.includes("Teaser"))
     );
     const backdrops = images.backdrops;
     const limitSimilar = similar.results.slice(0, 7);

@@ -19,7 +19,7 @@ export default async function TVPage({ params }: TVPageParams) {
     } = await getDataDetail(id, "tv");
     const year = getYear(tv.first_air_date);
     const teaser = video.results.find(
-        (video) => video.type === "Teaser" || "Trailer"
+        (video) => (video.type === "Teaser" || video.type === "Trailer") && (video.name.includes("Trailer") || video.name.includes("Teaser"))
     );
     const backdrops = images.backdrops;
     const limitSimilar = similar.results.slice(0, 7);
