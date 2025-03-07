@@ -3,7 +3,7 @@ import Movie from "@/components/Movie/movie";
 import Chips from "@/components/UI/chips";
 import Video from "@/components/video";
 import { getDataDetail, getYear } from "@/lib/utils";
-import { Genre } from "@/types/movie";
+import { Genre } from "../../../../types/movie";
 import Image from "next/image";
 
 interface MoviePageParams {
