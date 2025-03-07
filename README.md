@@ -20,7 +20,7 @@ MyMovieList is a web application that provides detailed information about movies
 First, clone the repository:
 
 ```bash
-git clone https://github.com/your-username/my-movie-list.git
+git clone https://github.com/aufasyaihan/my-movie-list.git
 cd my-movie-list
 ```
 
