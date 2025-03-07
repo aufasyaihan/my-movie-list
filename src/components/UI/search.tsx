@@ -68,9 +68,14 @@ export default function Search({ placeholder, type }: SearchProps) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            {query && <button className="absolute right-8 p-2 cursor-pointer" onClick={() => setQuery("")}>
-                <IoClose />
-            </button>}
+            {query && (
+                <button
+                    className="absolute right-8 p-2 cursor-pointer"
+                    onClick={() => setQuery("")}
+                >
+                    <IoClose />
+                </button>
+            )}
             <button className="p-2 rounded-r-md bg-neutral-600">
                 <FaSearch />
             </button>
@@ -89,6 +94,7 @@ export default function Search({ placeholder, type }: SearchProps) {
                                     href={`/${item.name ? "tv" : "movies"}/${
                                         item.id
                                     }`}
+                                    onClick={() => setQuery("")}
                                     className="flex text-white hover:bg-neutral-700 p-2 rounded-sm"
                                 >
                                     {item.title || item.name}{" "}
