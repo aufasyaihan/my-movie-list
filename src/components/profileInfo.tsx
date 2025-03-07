@@ -68,7 +68,7 @@ export default function ProfileInfo() {
                     <Input
                         type="text"
                         label="Last Name"
-                        id="firstName"
+                        id="lastName"
                         value={user?.lastName}
                         onChange={(e) =>
                             setUser(

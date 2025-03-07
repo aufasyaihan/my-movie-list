@@ -70,7 +70,7 @@ export async function getDataDetail<T extends "tv" | "movie">(
         headers: {
             accept: "application/json",
             Authorization:
-                "Bearer" + process.env.API_KEY,
+                "Bearer " + process.env.API_KEY,
         },
         next: { revalidate: 3600 },
     };

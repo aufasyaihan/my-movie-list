@@ -58,13 +58,11 @@ export default async function TVPage({ params }: TVPageParams) {
                             </Chips>
                         </div>
                         <div className="flex gap-2">
-                            {tv.genres.map(
-                                (genre: { id: number; name: string }) => (
-                                    <Chips type="genre" key={genre.id}>
-                                        {genre.name}
-                                    </Chips>
-                                )
-                            )}
+                            {tv.genres.map((genre) => (
+                                <Chips type="genre" key={genre.id}>
+                                    {genre.name}
+                                </Chips>
+                            ))}
                         </div>
                     </div>
                     <div className="flex gap-4">
@@ -91,9 +89,7 @@ export default async function TVPage({ params }: TVPageParams) {
                         </h2>
                         <p className="text-sm md:text-md text-neutral-300">
                             {tv.production_companies
-                                .map(
-                                    (company: { name: string }) => company.name
-                                )
+                                .map((company) => company.name)
                                 .join(", ")}
                         </p>
                     </div>
@@ -142,31 +138,19 @@ export default async function TVPage({ params }: TVPageParams) {
                     You May Like
                 </h2>
                 <div className="flex gap-4 overflow-x-auto whitespace-nowrap">
-                    {limitRecommendations.map(
-                        (recommendation: {
-                            id: number;
-                            media_type: string;
-                            poster_path: string;
-                            title: string;
-                            name: string;
-                            release_date: string;
-                            first_air_date: string;
-                        }) => (
-                            <Movie
-                                key={recommendation.id}
-                                media={recommendation.media_type}
-                                id={recommendation.id}
-                                image={recommendation.poster_path}
-                                title={
-                                    recommendation.title || recommendation.name
-                                }
-                                releaseDate={
-                                    recommendation.release_date ||
-                                    recommendation.first_air_date
-                                }
-                            />
-                        )
-                    )}
+                    {limitRecommendations.map((recommendation) => (
+                        <Movie
+                            key={recommendation.id}
+                            media={recommendation.media_type}
+                            id={recommendation.id}
+                            image={recommendation.poster_path}
+                            title={recommendation.title || recommendation.name}
+                            releaseDate={
+                                recommendation.release_date ||
+                                recommendation.first_air_date
+                            }
+                        />
+                    ))}
                 </div>
             </div>
         </section>
