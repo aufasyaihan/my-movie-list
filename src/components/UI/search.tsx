@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import Link from "next/link";
 import { getData, getYear } from "@/lib/utils";
+import { IoClose } from "react-icons/io5";
 
 interface Data {
     id: number;
@@ -16,10 +17,9 @@ interface Data {
 interface SearchProps {
     placeholder: string;
     type: string;
-    search?: boolean;
 }
 
-export default function Search({ placeholder, type, search }: SearchProps) {
+export default function Search({ placeholder, type }: SearchProps) {
     const [query, setQuery] = useState("");
     const [data, setData] = useState<Data[]>([]);
     const [loading, setLoading] = useState(false);
@@ -68,11 +68,12 @@ export default function Search({ placeholder, type, search }: SearchProps) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            {search && (
-                <button className="p-2 rounded-r-md bg-neutral-600">
-                    <FaSearch />
-                </button>
-            )}
+            {query && <button className="absolute right-8 p-2 cursor-pointer" onClick={() => setQuery("")}>
+                <IoClose />
+            </button>}
+            <button className="p-2 rounded-r-md bg-neutral-600">
+                <FaSearch />
+            </button>
             {query && (
                 <div className="absolute top-10 max-h-96 overflow-y-auto w-full bg-neutral-800 rounded-md shadow-lg p-2">
                     {loading ? (

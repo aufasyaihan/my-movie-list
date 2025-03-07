@@ -8,11 +8,13 @@ import { IoPersonCircle } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { User } from "@/types/user";
 import { MdPerson } from "react-icons/md";
-import { RxExit } from "react-icons/rx";
+import { RxExit, RxHamburgerMenu } from "react-icons/rx";
+import HamburgerMenu from "./hamburger";
 
 export default function Navbar() {
     const [user, setUser] = useState<User | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [hamburger, setHamburger] = useState(false);
 
     useEffect(() => {
         const data = getUser();
@@ -36,15 +38,29 @@ export default function Navbar() {
                 >
                     <span className="text-amber-600">My</span>MovieList
                 </Link>
-                <Link href={"/movies"} onClick={() => setIsOpen(false)}>
+                <Link
+                    className="hidden md:block"
+                    href={"/movies"}
+                    onClick={() => setIsOpen(false)}
+                >
                     Movies
                 </Link>
-                <Link href={"/tv"} onClick={() => setIsOpen(false)}>
+                <Link
+                    className="hidden md:block"
+                    href={"/tv"}
+                    onClick={() => setIsOpen(false)}
+                >
                     TV Shows
                 </Link>
             </div>
-            <div className="flex relative items-center gap-4">
-                <Search placeholder="Search Movie..." type="text" search />
+            <div className="relative flex md:hidden">
+                <button className="cursor-pointer" onClick={() => setHamburger(!hamburger)}>
+                    <RxHamburgerMenu className="text-3xl " />
+                </button>
+                {hamburger && <HamburgerMenu user={user} setIsOpen={setIsOpen} handleLogout={handleLogout} />}
+            </div>
+            <div className=" relative items-center gap-4 hidden md:flex">
+                <Search placeholder="Search Movie..." type="text" />
                 {user?.isLoggedIn ? (
                     <button
                         className="flex gap-1 items-center cursor-pointer text-3xl"
