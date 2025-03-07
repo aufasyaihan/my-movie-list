@@ -15,14 +15,14 @@ export default async function TVPage({ params }: TVPageParams) {
         dataDetail: tv,
         video,
         images,
-        recommendations,
+        similar,
     } = await getDataDetail(id, "tv");
     const year = getYear(tv.first_air_date);
     const teaser = video.results.find(
         (video) => video.type === "Teaser" || "Trailer"
     );
     const backdrops = images.backdrops;
-    const limitRecommendations = recommendations.results.slice(0, 7);
+    const limitSimilar = similar.results.slice(0, 7);
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
@@ -137,17 +137,17 @@ export default async function TVPage({ params }: TVPageParams) {
                 <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
                     You May Like
                 </h2>
-                <div className="flex gap-4 overflow-x-auto whitespace-nowrap">
-                    {limitRecommendations.map((recommendation) => (
+                <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
+                    {limitSimilar.map((similar) => (
                         <Movie
-                            key={recommendation.id}
-                            media={recommendation.media_type}
-                            id={recommendation.id}
-                            image={recommendation.poster_path}
-                            title={recommendation.title || recommendation.name}
+                            scroll
+                            key={similar.id}
+                            media={similar.media_type}
+                            id={similar.id}
+                            image={similar.poster_path}
+                            title={similar.title || similar.name}
                             releaseDate={
-                                recommendation.release_date ||
-                                recommendation.first_air_date
+                                similar.release_date || similar.first_air_date
                             }
                         />
                     ))}

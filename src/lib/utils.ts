@@ -58,12 +58,12 @@ export async function getDataDetail<T extends "tv" | "movie">(
     dataDetail: T extends "tv" ? TVType : MovieDetailType;
     video: VideoType;
     images: ImageType;
-    recommendations: MovieType;
+    similar: MovieType;
 }> {
     const url = `https://api.themoviedb.org/3/${type}/${id}`;
     const videoUrl = `https://api.themoviedb.org/3/${type}/${id}/videos`;
     const imageUrl = `https://api.themoviedb.org/3/${type}/${id}/images`;
-    const recommendationsUrl = `https://api.themoviedb.org/3/${type}/${id}/recommendations`;
+    const similarUrl = `https://api.themoviedb.org/3/${type}/${id}/similar`;
 
     const options = {
         method: "GET",
@@ -90,10 +90,10 @@ export async function getDataDetail<T extends "tv" | "movie">(
         const imageRes = await fetch(imageUrl, options);
         const images: ImageType = await imageRes.json();
 
-        const recommendationsRes = await fetch(recommendationsUrl, options);
-        const recommendations: MovieType = await recommendationsRes.json();
+        const similarRes = await fetch(similarUrl, options);
+        const similar: MovieType = await similarRes.json();
 
-        return { dataDetail, video, images, recommendations };
+        return { dataDetail, video, images, similar };
     } catch (error) {
         throw new Error((error as Error).message);
     }

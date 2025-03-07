@@ -11,7 +11,7 @@ interface MoviePageParams {
 
 export default async function MoviePage({ params }: MoviePageParams) {
     const { id } = await params;
-    const { dataDetail, video, images, recommendations } = await getDataDetail(
+    const { dataDetail, video, images, similar } = await getDataDetail(
         id,
         "movie"
     );
@@ -20,7 +20,7 @@ export default async function MoviePage({ params }: MoviePageParams) {
         (video) => video.type === "Teaser" || "Trailer"
     );
     const backdrops = images.backdrops;
-    const limitRecommendations = recommendations.results.slice(0, 7);
+    const limitSimilar = similar.results.slice(0, 7);
 
     return (
         <section className="flex flex-col gap-4 items-center justify-start h-full">
@@ -113,17 +113,17 @@ export default async function MoviePage({ params }: MoviePageParams) {
                     You May Like
                 </h2>
                 <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-                    {limitRecommendations.map((recommendation) => (
+                    {limitSimilar.map((similar) => (
                         <Movie
                             scroll
-                            key={recommendation.id}
-                            media={recommendation.media_type}
-                            id={recommendation.id}
-                            image={recommendation.poster_path}
-                            title={recommendation.title || recommendation.name}
+                            key={similar.id}
+                            media={similar.media_type}
+                            id={similar.id}
+                            image={similar.poster_path}
+                            title={similar.title || similar.name}
                             releaseDate={
-                                recommendation.release_date ||
-                                recommendation.first_air_date
+                                similar.release_date ||
+                                similar.first_air_date
                             }
                         />
                     ))}
