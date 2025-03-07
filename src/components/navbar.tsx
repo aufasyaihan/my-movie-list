@@ -29,11 +29,19 @@ export default function Navbar() {
     return (
         <nav className="flex items-center justify-between py-4 px-8 bg-white/10 backdrop-blur-md rounded-full shadow-lg inset-shadow-sm inset-shadow-white/15">
             <div className="flex items-center space-x-8">
-                <Link href={"/"} className="text-lg font-bold select-none">
+                <Link
+                    href={"/"}
+                    className="text-lg font-bold select-none"
+                    onClick={() => setIsOpen(false)}
+                >
                     <span className="text-amber-600">My</span>MovieList
                 </Link>
-                <Link href={"/movies"}>Movies</Link>
-                <Link href={"/tv"}>TV Shows</Link>
+                <Link href={"/movies"} onClick={() => setIsOpen(false)}>
+                    Movies
+                </Link>
+                <Link href={"/tv"} onClick={() => setIsOpen(false)}>
+                    TV Shows
+                </Link>
             </div>
             <div className="flex relative items-center gap-4">
                 <Search placeholder="Search Movie..." type="text" search />
@@ -58,13 +66,17 @@ export default function Navbar() {
                         <Link
                             className="flex gap-2 items-center p-2 hover:bg-neutral-700 rounded-sm"
                             href={"/profile"}
+                            onClick={() => setIsOpen(false)}
                         >
                             <span>
                                 <MdPerson />
                             </span>{" "}
                             Profile
                         </Link>
-                        <button className=" flex gap-2 items-center p-2 hover:bg-neutral-700 rounded-sm cursor-pointer text-start" onClick={handleLogout}>
+                        <button
+                            className=" flex gap-2 items-center p-2 hover:bg-neutral-700 rounded-sm cursor-pointer text-start"
+                            onClick={handleLogout}
+                        >
                             <span>
                                 <RxExit />
                             </span>{" "}

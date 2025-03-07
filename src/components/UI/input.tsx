@@ -11,7 +11,7 @@ export default function Input({ id, label, ...props }: InputProps) {
             </label>
             <input
                 id={id}
-                className="p-2 bg-neutral-700 rounded-md"
+                className="p-2 bg-neutral-600 rounded-md disabled:text-neutral-500 disabled:bg-neutral-700"
                 {...props}
             />
         </div>
