@@ -142,7 +142,7 @@ export default async function TVPage({ params }: TVPageParams) {
                         <Movie
                             scroll
                             key={similar.id}
-                            media={similar.media_type}
+                            media="tv"
                             id={similar.id}
                             image={similar.poster_path}
                             title={similar.title || similar.name}
