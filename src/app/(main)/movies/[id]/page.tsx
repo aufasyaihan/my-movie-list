@@ -3,7 +3,6 @@ import Movie from "@/components/Movie/movie";
 import Chips from "@/components/UI/chips";
 import Video from "@/components/video";
 import { getDataDetail, getYear } from "@/lib/utils";
-import { Genre } from "../../../../types/movie";
 import Image from "next/image";
 
 interface MoviePageParams {
@@ -54,11 +53,13 @@ export default async function MoviePage({ params }: MoviePageParams) {
                             <Chips type="status">{dataDetail.status}</Chips>
                         </div>
                         <div className="flex gap-2">
-                            {dataDetail.genres.map((genre : Genre) => (
-                                <Chips type="genre" key={genre.id}>
-                                    {genre.name}
-                                </Chips>
-                            ))}
+                            {dataDetail.genres.map(
+                                (genre: { id: number; name: string }) => (
+                                    <Chips type="genre" key={genre.id}>
+                                        {genre.name}
+                                    </Chips>
+                                )
+                            )}
                         </div>
                     </div>
                     <div className="flex flex-col">
