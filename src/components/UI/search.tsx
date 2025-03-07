@@ -97,7 +97,7 @@ export default function Search({ placeholder, type }: SearchProps) {
                                     onClick={() => setQuery("")}
                                     className="flex text-white hover:bg-neutral-700 p-2 rounded-sm"
                                 >
-                                    {item.title || item.name}{" "}
+                                    {item.title || item.name}{item.name ? " - Series " : " "}
                                     {!isNaN(year) && `(${year})`}
                                 </Link>
                             );

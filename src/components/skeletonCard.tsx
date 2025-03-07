@@ -6,7 +6,7 @@ export default function SkeletonCard({
     scroll?: boolean;
 }) {
     return (
-        <div className={`${scroll ? "flex" : "grid" } grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 w-full overflow-hidden`}>
+        <div className={`${scroll ? "flex" : "grid" } grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 w-full`}>
             {Array.from({ length: limit }).map((_, index) => (
                 <div
                     key={index}

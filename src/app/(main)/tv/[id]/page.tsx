@@ -44,7 +44,7 @@ export default async function TVPage({ params }: TVPageParams) {
                 <div className="flex flex-col gap-4 w-full">
                     <div className="flex gap-2 justify-start items-center flex-wrap md:flex-nowrap">
                         <h1 className="text-lg md:text-2xl font-bold text-start underline underline-offset-9 decoration-amber-600">
-                            {dataDetail.name} ({year})
+                            {dataDetail.name} {!isNaN(year) && `(${year})`}
                         </h1>
                         <h1 className="font-semibold">
                             ⭐ {dataDetail.vote_average.toFixed(1)} (
@@ -116,12 +116,12 @@ export default async function TVPage({ params }: TVPageParams) {
                 </div>
             </div>
             <div
-                className={`flex w-full flex-wrap md:flex-nowrap  justify-between gap-4${
+                className={`flex w-full flex-wrap md:flex-nowrap  justify-between gap-4 ${
                     !teaser ? "flex-row-reverse" : ""
                 }`}
             >
                 <div
-                    className={`flex flex-col gap-4 w-full ${
+                    className={`flex flex-col gap-4 w-1/2 ${
                         !teaser ? "hidden lg:block" : ""
                     }`}
                 >
@@ -135,35 +135,40 @@ export default async function TVPage({ params }: TVPageParams) {
                         </>
                     )}
                 </div>
-                {backdrops && (
-                    <>
-                        <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
-                            Images
-                        </h2>
-                        <Carousel images={backdrops} />
-                    </>
-                )}
-            </div>
-            <div className="flex flex-col gap-4 w-full">
-                <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
-                    You May Like
-                </h2>
-                <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-                    {limitSimilar.map((similar) => (
-                        <Movie
-                            scroll
-                            key={similar.id}
-                            media="tv"
-                            id={similar.id}
-                            image={similar.poster_path}
-                            title={similar.title || similar.name}
-                            releaseDate={
-                                similar.release_date || similar.first_air_date
-                            }
-                        />
-                    ))}
+                <div className="flex flex-col gap-4 w-1/2">
+                    {backdrops && (
+                        <>
+                            <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
+                                Images
+                            </h2>
+                            <Carousel images={backdrops} />
+                        </>
+                    )}
                 </div>
             </div>
+            {limitSimilar.length > 0 && (
+                <div className="flex flex-col gap-4 w-full">
+                    <h2 className="text-xl font-semibold underline underline-offset-9 decoration-amber-600">
+                        You May Like
+                    </h2>
+                    <div className="flex gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
+                        {limitSimilar.map((similar) => (
+                            <Movie
+                                scroll
+                                key={similar.id}
+                                media="tv"
+                                id={similar.id}
+                                image={similar.poster_path}
+                                title={similar.title || similar.name}
+                                releaseDate={
+                                    similar.release_date ||
+                                    similar.first_air_date
+                                }
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

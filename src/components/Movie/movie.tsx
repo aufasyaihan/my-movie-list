@@ -44,7 +44,7 @@ export default function Movie({
                 <p className="overflow-hidden text-ellipsis text-nowrap">
                     {title}
                 </p>
-                <span>({year})</span>
+                <span>{!isNaN(year) && `(${year})`}</span>
             </div>
         </Link>
     );
